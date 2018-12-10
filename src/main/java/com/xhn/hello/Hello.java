@@ -1,16 +1,13 @@
+package com.xhn.hello;
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.context.annotation.*;
 
-@RestController
+@SpringBootApplication
+@ComponentScan("com.xhn.hello.controller.*")
+@ComponentScan("com.xhn.hello.service.*")
 @EnableAutoConfiguration
 public class Hello{
-
-    @RequestMapping("/")
-    String home() {
-        return "Hello World!";
-    }
-
     public static void main(String[] args) throws Exception {
         SpringApplication.run(Hello.class, args);
     }
