@@ -51,7 +51,10 @@ public class UserController {
         obj.put("author", author);
         obj.put("msg", environment.getProperty("test.msg"));
         obj.put("msg2", msg);
-        obj.put("user", userService.getUser(1));
+
+        //obj.put("user", userService.getUser(1));
+
+        obj.put("xx", userService.userName());
         System.out.println(obj.toString());
 
         return obj.toString();
