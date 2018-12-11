@@ -2,3 +2,4 @@
 out/
 target/
 xhn.iml
+src/main/resources/*
