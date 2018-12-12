@@ -1,11 +1,9 @@
 package com.xhn.hello.controller;
 
-import com.xhn.hello.config.AuthorConfig;
-import jdk.nashorn.internal.objects.annotations.Property;
+import com.xhn.hello.pojo.User;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -19,42 +17,17 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private AuthorConfig authorConfig;
-
-    @Autowired
-    private Environment environment;
-
-    @Value("${test.msg}")
-    private String msg;
-
     @RequestMapping("index")
     String index() {
 
-        Map<String, Object> params = new HashMap<String, Object>();
-
-        Map<String, Object> author = new HashMap<String, Object>();
-        author.put("name", authorConfig.getName());
-        author.put("age", authorConfig.getAge());
-
         JSONObject obj = new JSONObject();
 
-        /*
-        obj.put("name", "John");
-        obj.put("nxx", userService.userName());
-        obj.put("sex", "male");
-        obj.put("age", 22);
-        obj.put("is_student", true);
-        obj.put("hobbies", new String[]{"hiking", "swimming"});
-        */
+        User user = userService.getUser(new Integer(2));
+        User user2 = userService.getUser2(new Integer(2));
 
-        obj.put("author", author);
-        obj.put("msg", environment.getProperty("test.msg"));
-        obj.put("msg2", msg);
+        obj.put("user", user.toString());
+        obj.put("user2", user2.toString());
 
-        //obj.put("user", userService.getUser(1));
-
-        obj.put("xx", userService.userName());
         System.out.println(obj.toString());
 
         return obj.toString();

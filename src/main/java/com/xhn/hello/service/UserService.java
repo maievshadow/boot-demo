@@ -1,7 +1,7 @@
 package com.xhn.hello.service;
 
-import com.xhn.hello.dao.User2Dao;
 import com.xhn.hello.dao.UserDao;
+import com.xhn.hello.mapper.UserMapper;
 import com.xhn.hello.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
@@ -11,27 +11,21 @@ import java.lang.*;
 @Service
 public class UserService {
 
-    private UserDao userDao;
+    @Autowired
+    private UserMapper userMapper;
 
     @Autowired
-    private User2Dao user2Dao;
+    private UserDao userDao;
 
     public User getUser(Integer userId)
     {
-        return userDao.getUser(userId);
-        //return userDao.getName();
+        return userMapper.getInfo(userId);
     }
 
-    public String userName()
+    public User getUser2(Integer userId)
     {
-        return user2Dao.getAllUserInfo();
+        return userDao.getUserInfo(userId);
     }
 
-    public UserDao getUserDao() {
-        return userDao;
-    }
 
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
-    }
 }
