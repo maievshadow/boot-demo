@@ -11,6 +11,7 @@ import java.lang.*;
 @Service
 public class UserService {
 
+    @Autowired
     private UserDao userDao;
 
     @Autowired
@@ -19,7 +20,6 @@ public class UserService {
     public User getUser(Integer userId)
     {
         return userDao.getUser(userId);
-        //return userDao.getName();
     }
 
     public String userName()

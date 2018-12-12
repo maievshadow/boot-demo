@@ -1,7 +1,9 @@
 package com.xhn.hello.config;
 
+import com.xhn.hello.mapper.UserMapper;
 import org.apache.ibatis.datasource.pooled.PooledDataSource;
 import org.apache.ibatis.mapping.Environment;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.TransactionFactory;
@@ -10,7 +12,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
 public class SessionFactoryConfig {
 
     @Value("${spring.datasource.url}")
@@ -26,7 +27,7 @@ public class SessionFactoryConfig {
     private String password;
 
     @Bean
-    public SqlSessionFactory sqlSessionFactory()
+    public SqlSession sqlSession()
     {
         PooledDataSource dataSource = new PooledDataSource();
         dataSource.setDriver(driver);
@@ -48,6 +49,7 @@ public class SessionFactoryConfig {
 
         //构建SqlSessionFactory
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
-        return sqlSessionFactory;
+
+        return sqlSessionFactory.openSession();
     }
 }
