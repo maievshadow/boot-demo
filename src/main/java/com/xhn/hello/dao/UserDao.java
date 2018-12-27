@@ -16,8 +16,10 @@ public class UserDao {
 
     public User getUser(Integer userId)
     {
+        /*
         UserMapper mapper = session.getMapper(UserMapper.class);
         User user = mapper.getInfo(userId);
+        */
 
         User user2 = userMapper.selectByPrimaryKey(userId);
         return user2;

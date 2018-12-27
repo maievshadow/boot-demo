@@ -1,6 +1,5 @@
 package com.xhn.hello;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
 

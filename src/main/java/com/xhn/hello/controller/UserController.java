@@ -3,6 +3,8 @@ package com.xhn.hello.controller;
 import com.xhn.hello.config.AuthorConfig;
 import jdk.nashorn.internal.objects.annotations.Property;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -16,6 +18,8 @@ import com.xhn.hello.service.*;
 @RequestMapping("/user")
 public class UserController {
 
+    private static final Logger log = LoggerFactory.getLogger(UserController.class);
+
     @Autowired
     private UserService userService;
 
@@ -28,15 +32,17 @@ public class UserController {
     @RequestMapping("index")
     String index() {
 
-        Map<String, Object> params = new HashMap<String, Object>();
+        log.info("this is a test\n");
+
+        Map<String, Object> obj = new HashMap<String, Object>();
 
         Map<String, Object> author = new HashMap<String, Object>();
         author.put("name", authorConfig.getName());
         author.put("age", authorConfig.getAge());
 
-        JSONObject obj = new JSONObject();
 
         /*
+        JSONObject obj = new JSONObject();
         obj.put("name", "John");
         obj.put("nxx", userService.userName());
         obj.put("sex", "male");
